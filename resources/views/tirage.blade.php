@@ -41,7 +41,7 @@
                             <input type="text" placeholder="0" class="this_number inline-block w-12 mr-1 p-2 text-center text-xl border border-2 border-gray-300 rounded-full bg-gray-100">
                             <input type="text" placeholder="0" class="this_number inline-block w-12 mr-1 p-2 text-center text-xl border border-2 border-gray-300 rounded-full bg-gray-100">               
                             <input type="text" placeholder="0" class="this_number inline-block w-12 mr-1 p-2 text-center text-xl border border-2 border-gray-300 rounded-full bg-gray-100">
-                            <div class="absolute top-0 right-0 bg-red-600 text-white rounded pt-0 px-1 hover:bg-red-800 cursor-pointer">x</div>
+                            <div class="remove-line absolute top-0 right-0 bg-red-600 text-white rounded pt-0 px-1 hover:bg-red-800 cursor-pointer">x</div>
                     </div>
                     `;
                     $('.numbers').append(line);                    
