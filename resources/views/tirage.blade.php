@@ -9,7 +9,7 @@
 
         <div class="text-center py-4 border-b">
             @foreach ($tirage as $k=>$item)
-            <div class="inline-block m-1 w-8 h-8 text-center text-xl border border-2 rounded-full bg-gray-400 text-white align-middle @if( $k === 'C' ) bg-green-600 text-white  @endif">
+            <div class="this_tirage inline-block m-1 w-8 h-8 text-center text-xl border border-2 rounded-full bg-gray-400 text-white align-middle @if( $k === 'C' ) bg-green-600 text-white is_c  @endif">
                 {{ $item }}
             </div>
             @endforeach            
@@ -19,7 +19,7 @@
                 <div class="text-center py-1 border relative">
             
                     @for ($j = 0; $j < 6; $j++)
-                        <input type="text" placeholder="0" class="inline-block w-12 mr-1 p-2 text-center text-xl border border-2 border-gray-300 rounded-full bg-gray-100">               
+                        <input type="text" placeholder="0" class="this_number inline-block w-12 mr-1 p-2 text-center text-xl border border-2 border-gray-300 rounded-full bg-gray-100">               
                     @endfor                  
                         <div class="remove-line absolute top-0 right-0 bg-red-600 text-white rounded pt-0 px-1 hover:bg-red-800 cursor-pointer">x</div>
                 </div>
@@ -28,18 +28,19 @@
 
         <div class="py-2 text-center">
             <button class="add-line bg-gray-600 rounded shadow border text-white text-4xl pb-2 px-3">+</button>
+            <button class="resultat bg-gray-600 rounded shadow border text-white text-4xl pb-2 px-3">Resultats</button>
         </div>
         <script>
             $(document).ready(function(){
                 $('.add-line').on('click', function(){
                     var line = `
                     <div class="text-center py-1 border relative">
-                            <input type="text" placeholder="0" class="inline-block w-12 mr-1 p-2 text-center text-xl border border-2 border-gray-300 rounded-full bg-gray-100">               
-                            <input type="text" placeholder="0" class="inline-block w-12 mr-1 p-2 text-center text-xl border border-2 border-gray-300 rounded-full bg-gray-100">               
-                            <input type="text" placeholder="0" class="inline-block w-12 mr-1 p-2 text-center text-xl border border-2 border-gray-300 rounded-full bg-gray-100">               
-                            <input type="text" placeholder="0" class="inline-block w-12 mr-1 p-2 text-center text-xl border border-2 border-gray-300 rounded-full bg-gray-100">
-                            <input type="text" placeholder="0" class="inline-block w-12 mr-1 p-2 text-center text-xl border border-2 border-gray-300 rounded-full bg-gray-100">               
-                            <input type="text" placeholder="0" class="inline-block w-12 mr-1 p-2 text-center text-xl border border-2 border-gray-300 rounded-full bg-gray-100">
+                            <input type="text" placeholder="0" class="this_number inline-block w-12 mr-1 p-2 text-center text-xl border border-2 border-gray-300 rounded-full bg-gray-100">               
+                            <input type="text" placeholder="0" class="this_number inline-block w-12 mr-1 p-2 text-center text-xl border border-2 border-gray-300 rounded-full bg-gray-100">               
+                            <input type="text" placeholder="0" class="this_number inline-block w-12 mr-1 p-2 text-center text-xl border border-2 border-gray-300 rounded-full bg-gray-100">               
+                            <input type="text" placeholder="0" class="this_number inline-block w-12 mr-1 p-2 text-center text-xl border border-2 border-gray-300 rounded-full bg-gray-100">
+                            <input type="text" placeholder="0" class="this_number inline-block w-12 mr-1 p-2 text-center text-xl border border-2 border-gray-300 rounded-full bg-gray-100">               
+                            <input type="text" placeholder="0" class="this_number inline-block w-12 mr-1 p-2 text-center text-xl border border-2 border-gray-300 rounded-full bg-gray-100">
                             <div class="absolute top-0 right-0 bg-red-600 text-white rounded pt-0 px-1 hover:bg-red-800 cursor-pointer">x</div>
                     </div>
                     `;
