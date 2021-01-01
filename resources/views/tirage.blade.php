@@ -47,7 +47,7 @@
                     $('.numbers').append(line);                    
                 });
 
-                $('.remove-line').on('click', function(){
+                $(document).on('click', '.remove-line', function(){
                     $(this).parent().remove();
                 });
             });
