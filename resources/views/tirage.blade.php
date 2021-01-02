@@ -15,15 +15,34 @@
             @endforeach            
         </div>
         <div class="numbers">
-            @for ($i = 0; $i < 3; $i++)
-                <div class="text-center py-1 border relative">
-            
-                    @for ($j = 0; $j < 6; $j++)
-                        <input type="text" placeholder="0" class="this_number inline-block w-12 mr-1 p-2 text-center text-xl border border-2 border-gray-300 rounded-full bg-gray-100">               
-                    @endfor                  
+            <?php $iterarion = 1; ?>
+            @foreach ($my_numbers as $num)
+                @if ($iteration == 1)
+                    <div class="text-center py-1 border relative">
+                        <input type="text" value="{{$num}}" placeholder="0" class="this_number inline-block w-12 mr-1 p-2 text-center text-xl border border-2 border-gray-300 rounded-full bg-gray-100">                      
+                        <?php $iteration++ ?>
+                @else
+                    @if ($iteration == 6)
+                        <input type="text" value="{{$num}}" placeholder="0" class="this_number inline-block w-12 mr-1 p-2 text-center text-xl border border-2 border-gray-300 rounded-full bg-gray-100">                      
+                        <?php $iteration=1; ?>
                         <div class="remove-line absolute top-0 right-0 bg-red-600 text-white rounded pt-0 px-1 hover:bg-red-800 cursor-pointer">x</div>
-                </div>
-            @endfor            
+                    </div>
+                    @else
+                        <input type="text" value="{{$num}}" placeholder="0" class="this_number inline-block w-12 mr-1 p-2 text-center text-xl border border-2 border-gray-300 rounded-full bg-gray-100">                      
+                        <?php $iteration++ ?> 
+                    @endif
+
+                @endif
+
+                <div class="text-center py-1 border relative">
+                    @if ($loop->index % 5 != 0)
+                        <input type="text" placeholder="0" class="this_number inline-block w-12 mr-1 p-2 text-center text-xl border border-2 border-gray-300 rounded-full bg-gray-100">
+                    @else
+                        <div class="remove-line absolute top-0 right-0 bg-red-600 text-white rounded pt-0 px-1 hover:bg-red-800 cursor-pointer">x</div>
+                    @endif                       
+                </div>            
+            @endforeach
+           
         </div>
 
         <div class="py-2 text-center">

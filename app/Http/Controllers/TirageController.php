@@ -7,17 +7,26 @@ use Goutte\Client;
 use Symfony\Component\HttpClient\HttpClient;
 
 use Illuminate\Support\Str;
+use App\Models\Tirage;
 
 class TirageController extends Controller{
     public function index(Request $r){
+        $my_numbers = explode('-', Tirage::find(1)->tirage);
         if($r->has('number')){
-            return view('tirage')->with(['number'=> $r->input('number'),'tirage'=>$this->tirage(2020, $r->input('number'))]);
+            return view('tirage')->with(['my_numbers'=>$my_numbers,'number'=> $r->input('number'),'tirage'=>$this->tirage(2020, $r->input('number'))]);
         }else{
-            return view('tirage')->with(['number'=> 283,'tirage'=>$this->tirage(2020, 283)]);
+            return view('tirage')->with(['my_numbers'=>$my_numbers, 'number'=> 283,'tirage'=>$this->tirage(2020, 283)]);
         }
         
     }
 
+    public function save(){
+        Tirage::truncate();
+        $tirage = Tirage::create([
+            'tirage'    =>  "4-3-1-8-43-18-5-16-13-18-14-10-40-49-38-37-30-48"
+        ]);
+        dump($tirage);
+    }
 
     public function tirage($year=2020, $number=0){
         $start_2020 = 169;
