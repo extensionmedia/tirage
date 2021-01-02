@@ -20,6 +20,8 @@ class TirageController extends Controller{
 
 
     public function tirage($year=2020, $number=0){
+        $start_2020 = 169;
+        
         $URL = Str::replaceArray('?', [$year, $number], env('TIRAGE_URL'));
         $client = new Client(HttpClient::create(['timeout' => 60,'verify_peer' => false]));
         $crawler = $client->request('GET', $URL);
