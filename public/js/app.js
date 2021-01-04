@@ -19366,15 +19366,18 @@ $(document).ready(function () {
     var number = 0;
     $('.this_tirage').each(function () {
       tirage = parseInt($(this).text());
-      $('.this_number').each(function () {
-        number = parseInt($(this).val());
 
-        if (number > 0) {
-          if (number == tirage) {
-            $(this).addClass('bg-red-600');
+      if (!$(this).hasClass('is_c')) {
+        $('.this_number').each(function () {
+          number = parseInt($(this).val());
+
+          if (number > 0) {
+            if (number == tirage) {
+              $(this).addClass('bg-red-600');
+            }
           }
-        }
-      });
+        });
+      }
     });
   });
 });
@@ -19420,8 +19423,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Yassine\Desktop\tirage\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Yassine\Desktop\tirage\resources\css\app.css */"./resources/css/app.css");
+__webpack_require__(/*! C:\Users\Yassine's\Desktop\tirage\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Yassine's\Desktop\tirage\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })

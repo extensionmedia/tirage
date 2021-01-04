@@ -13,9 +13,9 @@ class TirageController extends Controller{
     public function index(Request $r){
         $my_numbers = explode('-', Tirage::find(1)->toArray()["tirage"]);
         if($r->has('number')){
-            return view('tirage')->with(['my_numbers'=>$my_numbers,'number'=> $r->input('number'),'tirage'=>$this->tirage(2020, $r->input('number'))]);
+            return view('tirage')->with(['my_numbers'=>$my_numbers,'number'=> $r->input('number'), 'year'=> $r->input('year'),'tirage'=>$this->tirage($r->input('year'), $r->input('number'))]);
         }else{
-            return view('tirage')->with(['my_numbers'=>$my_numbers, 'number'=> 283,'tirage'=>$this->tirage(2020, 283)]);
+            return view('tirage')->with(['my_numbers'=>$my_numbers, 'number'=> 1, 'year'=> date('Y'),'tirage'=>$this->tirage(date('Y'), 1)]);
         }
         
     }
@@ -23,7 +23,7 @@ class TirageController extends Controller{
     public function save(){
         Tirage::truncate();
         $tirage = Tirage::create([
-            'tirage'    =>  "1-3-4-8-18-43-1-3-4-8-34-48-2-11-12-18-29-30-1-7-20-23-30-49-8-18-19-32-36-48-3-13-15-22-38-39-1-9-14-28-29-42-6-15-20-25-34-42-6-15-42-44-48-49-14-16-18-24-37-39"
+            'tirage'    =>  "1-9-8-2-3-7-1-9-8-4-11-15-2-20-1-2-9-14-2-20-1-6-2-26"
         ]);
         dump($tirage);
     }
@@ -39,6 +39,25 @@ class TirageController extends Controller{
                             return  $node->text();
                         }
                     );
+
+        $gain = $crawler->filter('table tr td')->each(
+            function ($node) {
+                return  $node->text();
+            }
+        );
+
+        if(!empty($gain)){
+            $gains = [
+                6       =>  $gain[2],
+                'C'     =>  $gain[5],
+                5       =>  $gain[8],
+                4       =>  $gain[11],
+                3       =>  $gain[14]
+            ];            
+        }else{
+            $gains = [];
+        }
+
         if(!empty($tirage)){
             return  [
                 1       =>  $tirage[0],
@@ -48,6 +67,33 @@ class TirageController extends Controller{
                 5       =>  $tirage[4],
                 6       =>  $tirage[5],
                 'C'     =>  $tirage[6],
+                'gains' =>  $gains
+            ];            
+        }else{
+            return [];
+        }
+
+    }
+
+    public function gains($year=2021, $number=1){
+        
+        $URL = Str::replaceArray('?', [$year, $number], env('TIRAGE_URL'));
+        $client = new Client(HttpClient::create(['timeout' => 60,'verify_peer' => false]));
+        $crawler = $client->request('GET', $URL);
+
+        $tirage = $crawler->filter('table tr td')->each(
+            function ($node) {
+                return  $node->text();
+            }
+        );
+
+        if(!empty($tirage)){
+            return  [
+                6       =>  $tirage[2],
+                'C'       =>  $tirage[5],
+                5       =>  $tirage[8],
+                4       =>  $tirage[11],
+                3       =>  $tirage[14]
             ];            
         }else{
             return [];

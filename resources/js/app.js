@@ -17,20 +17,23 @@ $(document).ready(function(){
     });
 
     $('.resultat').on('click', function(){
+
         var tirage = 0;
         var number = 0;
-
         $('.this_tirage').each(function(){
             tirage = parseInt( $(this).text() );
-            $('.this_number').each(function(){
-                number = parseInt( $(this).val() );
-                if(number > 0){
-                    if(number == tirage){
-                        $(this).addClass('bg-red-600');
+            if(!$(this).hasClass('is_c')){
+                $('.this_number').each(function(){
+
+                    number = parseInt( $(this).val() );
+                    if(number > 0){
+                        if(number == tirage){
+                            $(this).addClass('bg-red-600');
+                        }
+                        
                     }
-                    
-                }
-            });
-        })
+                });
+            }
+        });
     });
 });

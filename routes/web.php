@@ -20,3 +20,4 @@ Route::get('/tirage', [App\Http\Controllers\TirageController::class, 'index']);
 Route::post('/tirage', [App\Http\Controllers\TirageController::class, 'index'])->name('tirage');
 
 Route::get('/save', [App\Http\Controllers\TirageController::class, 'save'])->name('save');
+Route::get('/gains/{year}/{number}', [App\Http\Controllers\TirageController::class, 'gains']);

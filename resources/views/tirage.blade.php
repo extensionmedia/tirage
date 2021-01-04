@@ -3,15 +3,24 @@
     <div class="w-96 mt-8 mx-auto bg-white border rounded py-4 px-2 shadow">
         <form method="POST" action="{{route('tirage')}}" class="flex items-center">
             @csrf
-            <input type="number" required value="{{$number}}" name="number" id="" class="flex-1 border rounded py-1 px-2 font-bold text-center text-xl" placeholder="283">
-            <button class="w-36 border rounded py-2 px-3 font-bold bg-green-600 text-white">Voir</button>
+            <input type="number" required value="{{$number}}" name="number" id="" class="w-36 border rounded py-1 px-2 font-bold text-center text-xl" placeholder="1">
+            <input type="number" required value="{{$year}}" name="year" id="" class="w-36 border rounded py-1 px-2 font-bold text-center text-xl" placeholder="{{ date('year') }}">
+            <button class="flex-1 border rounded py-2 px-3 font-bold bg-green-600 text-white">Voir</button>
         </form>
 
         <div class="text-center py-4 border-b">
             @foreach ($tirage as $k=>$item)
-            <div class="this_tirage inline-block m-1 w-8 h-8 text-center text-xl border border-2 rounded-full bg-gray-400 text-white align-middle @if( $k === 'C' ) bg-green-600 text-white is_c  @endif">
-                {{ $item }}
-            </div>
+            @if ($k !== 'gains')
+                <div class="this_tirage inline-block m-1 w-8 h-8 text-center text-xl border border-2 rounded-full bg-gray-400 text-white align-middle @if( $k === 'C' ) bg-green-600 text-white is_c  @endif">
+                    {{ $item }}
+                </div>  
+            @else    
+                <div class="text-left">
+                    @dump($item)
+                </div>
+                         
+            @endif
+
             @endforeach            
         </div>
         <div class="numbers">
