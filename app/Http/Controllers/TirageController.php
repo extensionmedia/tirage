@@ -23,7 +23,7 @@ class TirageController extends Controller{
     public function save(){
         Tirage::truncate();
         $tirage = Tirage::create([
-            'tirage'    =>  "1-9-8-2-3-7-1-9-8-4-11-15-2-20-1-2-9-14-2-20-1-6-2-26"
+            'tirage'    =>  "1-2-3-7-8-9-1-4-8-9-11-15-2-9-12-14-20-29-1-2-16-20-22-26"
         ]);
         dump($tirage);
     }
