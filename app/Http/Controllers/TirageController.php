@@ -15,7 +15,7 @@ class TirageController extends Controller{
         if($r->has('number')){
             return view('tirage')->with(['my_numbers'=>$my_numbers,'number'=> $r->input('number'), 'year'=> $r->input('year'),'tirage'=>$this->tirage($r->input('year'), $r->input('number'))]);
         }else{
-            return view('tirage')->with(['my_numbers'=>$my_numbers, 'number'=> 1, 'year'=> date('Y'),'tirage'=>$this->tirage(date('Y'), 1)]);
+            return view('tirage')->with(['my_numbers'=>$my_numbers, 'number'=> 6, 'year'=> date('Y'),'tirage'=>$this->tirage(date('Y'), 1)]);
         }
         
     }
@@ -25,7 +25,8 @@ class TirageController extends Controller{
         $tirage = Tirage::create([
             'tirage'    =>  "1-2-3-7-8-9-1-4-8-9-11-15-2-9-12-14-20-29-1-2-16-20-22-26"
         ]);
-        dump($tirage);
+        $my_numbers = explode('-', Tirage::find(1)->toArray()["tirage"]);
+        return view('tirage')->with(['my_numbers'=>$my_numbers, 'number'=> 6, 'year'=> date('Y'),'tirage'=>$this->tirage(date('Y'), 1)]);
     }
 
     public function tirage($year=2020, $number=0){

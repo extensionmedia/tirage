@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [App\Http\Controllers\TirageController::class, 'index']);
 Route::get('/tirage', [App\Http\Controllers\TirageController::class, 'index']);
 Route::post('/tirage', [App\Http\Controllers\TirageController::class, 'index'])->name('tirage');
 
