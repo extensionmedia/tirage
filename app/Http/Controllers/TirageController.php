@@ -10,7 +10,10 @@ use Illuminate\Support\Str;
 use App\Models\Tirage;
 
 class TirageController extends Controller{
+    
     public function index(Request $r){
+        return view('start');
+
         $my_numbers = explode('-', Tirage::find(1)->toArray()["tirage"]);
         if($r->has('number')){
             return view('tirage')->with(['my_numbers'=>$my_numbers,'number'=> $r->input('number'), 'year'=> $r->input('year'),'tirage'=>$this->tirage($r->input('year'), $r->input('number'))]);
@@ -88,13 +91,29 @@ class TirageController extends Controller{
             }
         );
 
+
         if(!empty($tirage)){
-            return  [
-                6       =>  $tirage[2],
-                'C'       =>  $tirage[5],
-                5       =>  $tirage[8],
-                4       =>  $tirage[11],
-                3       =>  $tirage[14]
+            return [
+                6   =>  [
+                    'success'   =>  $tirage[1],
+                    'price'     =>  $tirage[2]
+                ],
+                'C'   =>  [
+                    'success'   =>  $tirage[4],
+                    'price'     =>  $tirage[5]
+                ],
+                5   =>  [
+                    'success'   =>  $tirage[7],
+                    'price'     =>  $tirage[8]
+                ],
+                4   =>  [
+                    'success'   =>  $tirage[10],
+                    'price'     =>  $tirage[11]
+                ],
+                3   =>  [
+                    'success'   =>  $tirage[13],
+                    'price'     =>  $tirage[14]
+                ]
             ];            
         }else{
             return [];
