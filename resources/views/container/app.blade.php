@@ -12,7 +12,7 @@
 <body>
     <div class="relative h-full bg-gray-50">
         @include('shared.topbar')
-        <div class="pt-12 w-full lg:w-1/3 border mx-auto bg-white">
+        <div class="pt-12 w-full lg:w-2/3 px-4 lg:mx-auto">
             @yield('content')
         </div>
     </div>

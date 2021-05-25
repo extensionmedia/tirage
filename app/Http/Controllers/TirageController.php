@@ -120,4 +120,5 @@ class TirageController extends Controller{
         }
 
     }
+    
 }
